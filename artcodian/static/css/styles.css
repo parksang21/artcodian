@@ -1,0 +1,94 @@
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.carousel-item {
+	height:800px;
+	background-size:cover;
+	text-align:center;
+}
+
+.carousel-item.item1{
+	background-color: #eeeeee;
+	background-position: left-center;
+}
+
+.helper{
+	display:inline-block;
+	height:100%;
+	vertical-align: middle;
+}
+
+.intro{
+	display:inline-block;
+	vertical-align: middle;
+}
+
+.intro h2 {
+	font-size:32px;
+	color:black;
+	font-weight:300;
+	margin-top:0px;
+	margin-bottom:18px;
+}
+
+.intro h3 {
+	font-size:22px;
+	color:black;
+	font-weight:300;
+	margin-top:0px;
+	margin-bottom:48px;
+
+}
+
+.intro a {
+	background-color: #f44336;
+	border-radius:2px;
+	padding:10px 30px;
+	color:white;
+	font-weight:300;
+}
+
+.container {
+	margin-top: 200px;
+	margin-bottom:100px;
+}
+.course {
+	display: block;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+	margin-bottom: 20px;
+}
+
+.course:hover {
+	text-decoration: none;
+}
+
+.course .course-img{
+	display:block;
+}
+
+.course .info {
+	padding:10px;
+}
+
+.course .info h4 {
+	font-size:18px;
+	color:#4a4a4a;
+	margin-top:0;
+	margin-bottom:10px;
+}
+
+.course .info .lecturer{
+	font-size:13px;
+	color:#4a4a4a;
+
+}
+
+.course .info .lecturer img, .course .info .lecturer .name{
+	vertical-align: middle;
+}
+
+.contain {
+	text-align:center;
+}
+

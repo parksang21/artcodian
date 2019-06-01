@@ -33,14 +33,14 @@ def check_ticket(request, code):
     try:
         ticket = Tickets.objects.get(id_code=code)
     except Exception:
-        return HttpResponse("Not Valid Code")
+        return render(request, 'hacker/failed.html', {})
     else:
         if ticket.is_entered == False:
             ticket.is_entered=True
             ticket.save()
-            return HttpResponse(code)
+            return render(request, 'hacker/success.html', {})
         else:
-            return HttpResponse("already entered")
+            return render(request, 'hacker/failed.html', {})
 
 
 def ticket_generation(request):
@@ -71,7 +71,7 @@ def ticket_generation(request):
             s_obj.vacant_seats = s_obj.total_seats - s_obj.booked_seats
             s_obj.save()
 
-            return redirect('ticket')
+            return redirect('ticketing')
         else:
             return HttpResponse("wrong data")
     else:
@@ -79,4 +79,4 @@ def ticket_generation(request):
     form = TicketingForm()
     'vacant 받아오기 위해서는 앞 페이지에서 타고 들어가는 과정이 있어야'
     # vacant =
-    return render(request, 'ticketing.html', {'form':form})
+    return render(request, 'hacker/index.html', {'form':form})
