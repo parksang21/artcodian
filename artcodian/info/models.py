@@ -15,6 +15,7 @@ class SceneInfo(models.Model):
     runtime = models.IntegerField()
     total_seats = models.IntegerField()
     vacant_seats = models.IntegerField()
+    booked_seats = models.IntegerField(default=0)
 
     def __str__(self):
         return self.play.title
