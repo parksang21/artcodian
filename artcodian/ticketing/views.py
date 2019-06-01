@@ -62,9 +62,6 @@ def ticket_generation(request):
 
             img = qr.make_image(fill_color="black", back_color="white")
             img.save(post.qrcode_path)
-            '''
-            code here
-            '''
 
             post.save()
             s_obj = get_object_or_404(SceneInfo, pk=post.scene.pk)
