@@ -8,4 +8,5 @@
 최수진
 
 
-### ㅎㅅㅎ
+- [notion link
+](https://www.notion.so/2019-f7ec3f0d1e5443e6ad34b4dbf24ea85a)
