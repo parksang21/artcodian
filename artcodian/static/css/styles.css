@@ -3,7 +3,7 @@ body {
 }
 
 .carousel-item {
-	height:800px;
+	height:1000px;
 	background-size:cover;
 	text-align:center;
 }
@@ -91,4 +91,3 @@ body {
 .contain {
 	text-align:center;
 }
-
