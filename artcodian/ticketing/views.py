@@ -51,30 +51,3 @@ def ticket_generation(request):
     'vacant 받아오기 위해서는 앞 페이지에서 타고 들어가는 과정이 있어야'
     # vacant =
     return render(request, 'ticketing.html', {'form':form})
-
-    def index(request):
-        return HttpResponse("asdf")
-
-    def show(request):
-    	place = []
-    	name = []
-    	s_id = []
-    	time = []
-
-    	response = requests.get('http://www.kopis.or.kr/openApi/restful/pblprfr?service='+key+'&stdate='+stdate+'&eddate='+eddate+'&cpage='+cpage+'&rows='+rows+'&prfstate=02').text
-    	r_data = xmltodict.parse(response)
-
-    	datas = r_data['dbs']['db']
-
-    	for i in range(len(datas)):
-    		s_id.append(datas[i]['mt20id'])
-    		name.append(datas[i]['prfnm'])
-    		place.append(datas[i]['fcltynm'])
-
-    	for i in range(len(s_id)):
-    		resp = requests.get('http://www.kopis.or.kr/openApi/restful/pblprfr/'+s_id[i]+'?service='+key).text
-    		r_d = xmltodict.parse(resp)
-    		data = r_d['dbs']['db']['dtguidance']
-    		time.append(data)
-
-    	return render(request, 'arcodian/show.html', {'s_id' : s_id, 'name':name, 'place':place, 'time':time})
