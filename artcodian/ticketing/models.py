@@ -1,7 +1,7 @@
 import random
 import string
 
-
+from artcodian import settings
 from django.db import models
 
 from info.models import SceneInfo
@@ -21,7 +21,7 @@ class Tickets(models.Model):
         online ticket is validate or not
     '''
     id_code = models.CharField(max_length=10,
-        default=randomString)
+        default=randomString, unique=True)
 
     '''
         purchased date
@@ -40,6 +40,8 @@ class Tickets(models.Model):
     )
 
     is_entered = models.BooleanField(default=False)
+
+    qrcode_path = models.CharField(max_length=200)
 
     def __str__(self):
         return self.id_code

@@ -2,3 +2,5 @@ qrcode
 requests
 xmltodict
 sqlparse
+Image
+pillow

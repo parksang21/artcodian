@@ -7,14 +7,26 @@ from .forms import TicketingForm
 
 from info.models import SceneInfo
 
-import requests
+import qrcode
+import os
+from artcodian import settings
 
-import json
-import xmltodict
-# Create your views here.
+ROOT_URL = ''
 
 def ticket(request):
-    return HttpResponse("Let's check tickets")
+
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data('Some data')
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+
+    return HttpResponse(img)
 
 
 def check_ticket(request, code):
@@ -37,11 +49,29 @@ def ticket_generation(request):
         if form.is_valid():
             post = form.save(commit=False);
             post.pur_date = timezone.now()
+            filename = 'tickets/' + post.id_code + '.png'
+            post.qrcode_path = os.path.join(settings.MEDIA_ROOT, filename)
+            qr = qrcode.QRCode(
+                version=1,
+                error_correction=qrcode.constants.ERROR_CORRECT_L,
+                box_size=10,
+                border=4,
+            )
+            qr.add_data(post.id_code)
+            qr.make(fit=True)
+
+            img = qr.make_image(fill_color="black", back_color="white")
+            img.save(post.qrcode_path)
+            '''
+            code here
+            '''
+
             post.save()
             s_obj = get_object_or_404(SceneInfo, pk=post.scene.pk)
             s_obj.booked_seats += 1
             s_obj.vacant_seats = s_obj.total_seats - s_obj.booked_seats
             s_obj.save()
+
             return redirect('ticket')
         else:
             return HttpResponse("wrong data")
