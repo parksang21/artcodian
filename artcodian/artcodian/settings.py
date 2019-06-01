@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ticketing.apps.TicketingConfig',
+    'info.apps.InfoConfig',
 ]
 
 MIDDLEWARE = [

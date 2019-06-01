@@ -4,4 +4,7 @@ from django.contrib import admin
 
 from .models import Tickets
 
-admin.site.register(Tickets)
+class TicketsAdmin(admin.ModelAdmin):
+    list_display = ('id_code', 'pur_date', 'title', 'scene')
+
+admin.site.register(Tickets, TicketsAdmin)
