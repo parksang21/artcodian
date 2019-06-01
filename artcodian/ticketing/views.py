@@ -9,7 +9,7 @@ from info.models import SceneInfo
 
 import qrcode
 import os
-from artcodian import settings
+from django.conf import settings
 
 ROOT_URL = ''
 
