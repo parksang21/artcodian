@@ -12,12 +12,12 @@ eddate = '20190731'
 cpage = '1'
 rows = '10'
 
-# Create your views here.
 def show(request):
 	place = []
 	name = []
 	s_id = []
 	time = []
+	seat = []
 
 	response = requests.get('http://www.kopis.or.kr/openApi/restful/pblprfr?service='+key+'&stdate='+stdate+'&eddate='+eddate+'&cpage='+cpage+'&rows='+rows+'&prfstate=02').text
 	r_data = xmltodict.parse(response)
@@ -35,4 +35,11 @@ def show(request):
 		data = r_d['dbs']['db']['dtguidance']
 		time.append(data)
 
-	return render(request, 'arcodian/show.html', {'s_id' : s_id, 'name':name, 'place':place, 'time':time})
+	for i in range(len(place)):
+		res = requests.get('http://www.kopis.or.kr/openApi/restful/prfplc?service='+key+'&cpage='+cpage+'&rows='+rows+'&shprfnmfct='+place[i]).text
+		r = xmltodict.parse(res)
+		d = r['dbs']['db']['seatscale']
+		seat.append(d)
+
+	return render(request, 'arcodian/show.html', {'s_id' : s_id, 'name':name, 'place':place, 'time':time, 'seat':seat})
+
