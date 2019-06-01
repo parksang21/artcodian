@@ -11,7 +11,7 @@ import qrcode
 import os
 from django.conf import settings
 
-ROOT_URL = ''
+ROOT_URL = 'http://psycoder.pythonanywhere.com'
 
 def ticket(request):
 
@@ -51,13 +51,15 @@ def ticket_generation(request):
             post.pur_date = timezone.now()
             filename = 'tickets/' + post.id_code + '.png'
             post.qrcode_path = os.path.join(settings.MEDIA_ROOT, filename)
+
             qr = qrcode.QRCode(
                 version=1,
                 error_correction=qrcode.constants.ERROR_CORRECT_L,
                 box_size=10,
                 border=4,
             )
-            qr.add_data(post.id_code)
+            check_url=os.path.join(ROOT_URL, "ticketing/check/"+post.id_code)
+            qr.add_data(check_url)
             qr.make(fit=True)
 
             img = qr.make_image(fill_color="black", back_color="white")
