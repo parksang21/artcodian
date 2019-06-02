@@ -31,7 +31,7 @@ class Tickets(models.Model):
     '''
         play title
     '''
-    title = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=200, null=True)
 
     scene = models.ForeignKey(
         SceneInfo,
