@@ -17,7 +17,7 @@ class SceneInfo(models.Model):
     booked_seats = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.play.title
+        return self.play.title + str(self.start_time)
 
 
 class PlayInfo(models.Model):
